@@ -57,7 +57,7 @@ public class PolygonTest {
     @Test
     public void shouldReturnNullInCaseVerticeDoesNotExist(){
         this.polygon.addCoordinate(new Coordinate(0, 0));
-        Coordinate coord = this.polygon.getCoordinate(1);
+        Coordinate coord = this.polygon.getCoordinate(2);
         assertNull("Should return Null in case requested vertice does not exist", coord);
     }
 
@@ -165,5 +165,30 @@ public class PolygonTest {
              actualCoordinate2.getY(),
              this.epsilon
         );
+    }
+
+    @Test
+    public void shouldReturnTriangleArea(){
+        this.triangle.addCoordinate(new Coordinate(0, 0));
+        this.triangle.addCoordinate(new Coordinate(0, 1));
+        this.triangle.addCoordinate(new Coordinate(1, 0));
+
+        double expectedArea = 0.5;
+
+        double actualArea = this.triangle.calculateArea();
+        assertEquals("Triangle area (from calculateArea) is not returning 0.5.", expectedArea, actualArea, this.epsilon);
+    }
+
+    @Test
+    public void shouldReturnSquareArea(){
+        this.square.addCoordinate(new Coordinate(0, 0));
+        this.square.addCoordinate(new Coordinate(0, 2));
+        this.square.addCoordinate(new Coordinate(2, 2));
+        this.square.addCoordinate(new Coordinate(2, 0));
+
+        double expectedArea = 4;
+
+        double actualArea = this.square.calculateArea();
+        assertEquals("Square area is not returning 4.", expectedArea, actualArea, this.epsilon);
     }
 }

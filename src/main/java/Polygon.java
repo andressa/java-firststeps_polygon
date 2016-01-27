@@ -12,6 +12,7 @@ import java.util.List;
 public class Polygon {
     private int numberOfVertices;
     private List<Coordinate> vertices = new ArrayList<>();
+    private double area;
 
     public Polygon(int numberOfVertices){
         Validate.inclusiveBetween(3, Integer.MAX_VALUE, numberOfVertices);
@@ -47,6 +48,19 @@ public class Polygon {
     }
 
 
+    public double calculateArea() {
+        this.area = 0;
+        for (int vertice = 0; vertice < this.numberOfVertices; vertice ++){
+            Coordinate currentCoordinate = this.getCoordinate(vertice);
+            Coordinate nextCoordinate = this.getCoordinate(vertice + 1);
+            Coordinate previousCoordinate = this.getCoordinate(vertice - 1);
+            this.area += (currentCoordinate.getX() * nextCoordinate.getY() - currentCoordinate.getX() * previousCoordinate.getY());
+
+        }
+        this.area /= 2;
+        this.area = Math.abs(this.area);
+        return this.area;
+    }
 }
 
 
