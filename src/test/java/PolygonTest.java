@@ -62,6 +62,33 @@ public class PolygonTest {
     }
 
     @Test
+    public void shouldReturnCoordinate0InCaseWhenNumberOfVerticesPlus1IsRequired(){
+        Coordinate previous = new Coordinate(0, 0);
+        Coordinate current = new Coordinate(1, 1);
+        Coordinate next = new Coordinate(2, 2);
+
+        this.polygon.addCoordinate(previous);
+        this.polygon.addCoordinate(current);
+        this.polygon.addCoordinate(next);
+
+        double expectedY = previous.getY();
+        double expectedX = previous.getX();
+
+        Coordinate actualCoordinate = this.polygon.getCoordinate(3);
+        double actualY = actualCoordinate.getY();
+        double actualX = actualCoordinate.getX();
+
+        assertEquals(
+             "If number of vertices is 3, getCoordinate(4).getX() is not returning coordinate 0",
+             expectedX, actualX, this.epsilon
+        );
+        assertEquals(
+             "If number of vertices is 3, getCoordinate(4).getY() is not returning coordinate 0",
+             expectedY, actualY, this.epsilon
+        );
+    }
+
+    @Test
     public void shoudlAddNumberOfVerticesAsNumberOfCoordinates(){
         for (int vertice = 0; vertice < this.informedNumberOfVertices; vertice ++){
             this.polygon.addCoordinate(new Coordinate(1, 1));

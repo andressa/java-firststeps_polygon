@@ -29,7 +29,7 @@ public class Polygon {
         } catch (ArrayIndexOutOfBoundsException e) {
             coordinate = this.vertices.get(this.vertices.size() - 1);
         } catch (IndexOutOfBoundsException e){
-            if (index == this.vertices.size() + 1){
+            if (index == this.vertices.size()){
                 coordinate = this.vertices.get(0);
             }else{
                 coordinate = null;
