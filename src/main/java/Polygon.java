@@ -4,6 +4,7 @@
     at 2016-01-26
  */
 import org.apache.commons.lang3.Validate;
+import org.omg.CORBA.Object;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,19 @@ public class Polygon {
     }
 
     public Coordinate getCoordinate(int index) {
-        return this.vertices.get(index);
+        Coordinate coordinate;
+        try {
+            coordinate = this.vertices.get(index);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            coordinate = this.vertices.get(this.vertices.size() - 1);
+        } catch (IndexOutOfBoundsException e){
+            if (index == this.vertices.size() + 1){
+                coordinate = this.vertices.get(0);
+            }else{
+                coordinate = null;
+            }
+        }
+        return coordinate;
     }
 
     public int getNumberOfVertices() {
@@ -32,6 +45,8 @@ public class Polygon {
     public int getNumberOfCoordinates() {
         return this.vertices.size();
     }
+
+
 }
 
 
