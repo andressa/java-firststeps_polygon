@@ -1,9 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 /*
  * Created by asivolella at 2016-01-27
@@ -50,8 +48,7 @@ public class PolygonTest {
 
         Coordinate actual = this.polygon.getCoordinate(0);
 
-        assertEquals("Coordinate is not setting X coordinate", expected.getX(), actual.getX(), this.epsilon);
-        assertEquals("Coordinate is not setting Y coordinate", expected.getY(), actual.getY(), this.epsilon);
+        assertArrayEquals(expected.getArrayCoordinate(), actual.getArrayCoordinate(), this.epsilon);
     }
 
     @Test
