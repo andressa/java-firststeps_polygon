@@ -68,20 +68,13 @@ public class PolygonTest {
         this.polygon.addCoordinate(current);
         this.polygon.addCoordinate(next);
 
-        double expectedY = previous.getY();
-        double expectedX = previous.getX();
-
         Coordinate actualCoordinate = this.polygon.getCoordinate(3);
-        double actualY = actualCoordinate.getY();
-        double actualX = actualCoordinate.getX();
 
-        assertEquals(
-             "If number of vertices is 3, getCoordinate(3).getX() is not returning coordinate 0",
-             expectedX, actualX, this.epsilon
-        );
-        assertEquals(
-             "If number of vertices is 3, getCoordinate(3).getY() is not returning coordinate 0",
-             expectedY, actualY, this.epsilon
+        assertArrayEquals(
+            "Get coordinate 0 when vertice 3 is requested",
+            previous.getArrayCoordinate(),
+            actualCoordinate.getArrayCoordinate(),
+            this.epsilon
         );
     }
 
@@ -95,20 +88,11 @@ public class PolygonTest {
         this.polygon.addCoordinate(current);
         this.polygon.addCoordinate(next);
 
-        double expectedY = next.getY();
-        double expectedX = next.getX();
-
         Coordinate actualCoordinate = this.polygon.getCoordinate(-1);
-        double actualY = actualCoordinate.getY();
-        double actualX = actualCoordinate.getX();
 
-        assertEquals(
-                "If number of vertices is 3, getCoordinate(-1).getX() is not returning coordinate 2",
-                expectedX, actualX, this.epsilon
-        );
-        assertEquals(
-                "If number of vertices is 3, getCoordinate(-1).getY() is not returning coordinate 2",
-                expectedY, actualY, this.epsilon
+        assertArrayEquals(
+            "getCoordinante(-1) is not returning coordindate 2 if it is a triangle",
+            next.getArrayCoordinate(), actualCoordinate.getArrayCoordinate(), this.epsilon
         );
     }
 
@@ -137,29 +121,17 @@ public class PolygonTest {
         Coordinate actualCoordinate1 = this.polygon.getCoordinate(0);
         Coordinate actualCoordinate2 = this.polygon.getCoordinate(1);
 
-        assertEquals(
-             "Coordinate1 is not setting Y correctly",
-             expectedCoordinate1.getY(),
-             actualCoordinate1.getY(),
-             this.epsilon
-        );
-        assertEquals(
-             "Coordinate1 is not setting X correctly",
-             expectedCoordinate1.getX(),
-             actualCoordinate1.getX(),
+        assertArrayEquals(
+             "Coordinate1 is not being set correctly",
+             expectedCoordinate1.getArrayCoordinate(),
+             actualCoordinate1.getArrayCoordinate(),
              this.epsilon
         );
 
-        assertEquals(
-             "Coordinate 2 is not setting X correctly",
-             expectedCoordinate2.getX(),
-             actualCoordinate2.getX(),
-             this.epsilon
-        );
-        assertEquals(
-             "Coordinate 2 is not setting Y correctly",
-             expectedCoordinate2.getY(),
-             actualCoordinate2.getY(),
+        assertArrayEquals(
+             "Coordinate2 is not being set correctly",
+             expectedCoordinate2.getArrayCoordinate(),
+             actualCoordinate2.getArrayCoordinate(),
              this.epsilon
         );
     }

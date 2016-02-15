@@ -53,7 +53,13 @@ public class Polygon {
             Coordinate currentCoordinate = this.getCoordinate(vertice);
             Coordinate nextCoordinate = this.getCoordinate(vertice + 1);
             Coordinate previousCoordinate = this.getCoordinate(vertice - 1);
-            this.area += (currentCoordinate.getX() * nextCoordinate.getY() - currentCoordinate.getX() * previousCoordinate.getY());
+
+            double currentX = currentCoordinate.getArrayCoordinate()[0];
+            double nextY = nextCoordinate.getArrayCoordinate()[1];
+            double previousY = previousCoordinate.getArrayCoordinate()[1];
+
+
+            this.area += (currentX * nextY - currentX * previousY);
 
         }
         this.area /= 2;

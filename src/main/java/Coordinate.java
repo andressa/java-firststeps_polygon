@@ -13,14 +13,6 @@ public class Coordinate {
         this.coordinate = new double[]{x, y};
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
     public double[] getArrayCoordinate() {
         return this.coordinate;
     }
